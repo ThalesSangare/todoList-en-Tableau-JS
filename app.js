@@ -3,18 +3,17 @@ const btn = document.getElementById("btn");
 let liste = document.querySelector("ul");
 let input = document.querySelector("input");
 
-//Variables
+
 let tab_taches = [];
 
+// Recuperation des taches deja enreg dans localStorage
 const savedTaches = localStorage.getItem('taches');
 if (savedTaches) {
     tab_taches = JSON.parse(savedTaches);
     afficherTache();
 }
 
-
-
-// fonction
+// fonction affichage des taches
 function afficherTache() {
   liste.innerHTML = "";
 
@@ -40,7 +39,7 @@ function afficherTache() {
         }
 
     const btnSup = document.createElement('button');
-    btnSup.innerText = 'Del';
+    btnSup.innerText = 'x';
 
     btnSup.addEventListener('click', () => {
         tab_taches.splice(index, 1);
@@ -64,6 +63,7 @@ function ajouterTache() {
         texte: input.value,
         fait: false
     });
+    // Enregistrement dans localStorage
 localStorage.setItem('taches', JSON.stringify(tab_taches));
     input.value = '';
     afficherTache();
